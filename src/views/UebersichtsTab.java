@@ -5,7 +5,14 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class UebersichtsTab extends JPanel {
+import controller.ObserverFace;
+import model.DatenContainer;
+
+public class UebersichtsTab extends JPanel implements ObserverFace{
+	
+	private static final long serialVersionUID = 1L;
+
+	
 	public UebersichtsTab() {
 		setLayout(new GridLayout(0, 1));
 		
@@ -104,11 +111,10 @@ public class UebersichtsTab extends JPanel {
 		add(attributDaten);
 
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+	
+	@Override
+	public void update(DatenContainer datenContainer) {
+		
+	}
 
 }

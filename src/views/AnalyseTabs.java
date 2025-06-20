@@ -1,13 +1,10 @@
 package views;
 
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class AnalyseTabs extends JTabbedPane {
 	
-	/**
-	 * 
-	 */
+
 	private String title;
 	
 	private static final long serialVersionUID = 1L;
@@ -26,7 +23,7 @@ public class AnalyseTabs extends JTabbedPane {
 		FelderTab felder_tab = new FelderTab();
 		komplettesPane.addTab("Felder", null, felder_tab, null);
 	
-		JPanel methoden_tab = new JPanel();
+		MethodenTab methoden_tab = new MethodenTab();
 		komplettesPane.addTab("Methoden", null, methoden_tab, null);
 		
 	}

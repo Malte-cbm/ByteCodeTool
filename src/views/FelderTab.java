@@ -8,14 +8,24 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class FelderTab extends JPanel {
+import controller.ObserverFace;
+import model.DatenContainer;
 
-	/**
-	 * 
-	 */
+public class FelderTab extends JPanel implements ObserverFace{
+
+
 	private static final long serialVersionUID = 1L;
 	
 	private JList<String> felder = new JList<String>();
+	
+	private JTextField feldField;
+	private JTextField deskriptorFelderField;
+	private JTextField accFlagsFelderField;
+	
+	private JScrollPane feldAttributListe;
+	private JScrollPane byteCodeListeFelder;
+	
+	
 
 	public FelderTab() {
 		
@@ -32,35 +42,44 @@ public class FelderTab extends JPanel {
 		
 		JLabel nameFeldLabel = new JLabel("Name:");
 		feldDaten.add(nameFeldLabel);
-		JTextField feldField = new JTextField(10);
+		this.feldField = new JTextField(10);
 		feldDaten.add(feldField);
 		
-		JLabel deskriptorLabel = new JLabel("Deskriptor");
-		feldDaten.add(deskriptorLabel);
-		JTextField deskriptorField = new JTextField(10);
-		feldDaten.add(deskriptorField);
+		JLabel deskriptorFelderLabel = new JLabel("Deskriptor");
+		feldDaten.add(deskriptorFelderLabel);
+		this.deskriptorFelderField = new JTextField(10);
+		feldDaten.add(deskriptorFelderField);
 		
-		JLabel accFlagsLabel = new JLabel("Access Flags:");
-		feldDaten.add(accFlagsLabel);
-		JTextField accFlagsField = new JTextField(10);
-		feldDaten.add(accFlagsField);
+		JLabel accFlagsFelderLabel = new JLabel("Access Flags:");
+		feldDaten.add(accFlagsFelderLabel);
+		this.accFlagsFelderField = new JTextField(10);
+		feldDaten.add(accFlagsFelderField);
 		
 		feldDetails.add(feldDaten);
 		
 		JPanel feldAttribute = new JPanel();
 		feldAttribute.setLayout(new GridLayout(0, 1));
 
-		JLabel attributLabel = new JLabel("Attribute:");
-		feldAttribute.add(attributLabel);
-		JScrollPane feldAttributListe = new JScrollPane();
+		JLabel attributFelderLabel = new JLabel("Attribute:");
+		feldAttribute.add(attributFelderLabel);
+		this.feldAttributListe = new JScrollPane();
 		feldAttribute.add(feldAttributListe);
 		
 		feldDetails.add(feldAttribute);
 		
 		add(feldDetails);
 		
-		JScrollPane byteCodeListe = new JScrollPane();
-		add(byteCodeListe);
+		this.byteCodeListeFelder = new JScrollPane();
+		add(byteCodeListeFelder);
+	}
+	
+	@Override
+	public void update(DatenContainer datenContainer) {
+		
+		//this.felder = ;
+		
+		feldField.setText("asdkjh");
+		
 	}
 
 }

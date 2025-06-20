@@ -11,7 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class KonstantenTab extends JPanel {
+import controller.ObserverFace;
+import model.DatenContainer;
+
+public class KonstantenTab extends JPanel implements ObserverFace{
 
 	/**
 	 * 
@@ -51,6 +54,11 @@ public class KonstantenTab extends JPanel {
 		
 		JScrollPane konstantenPool = new JScrollPane(konstanten);
 		add(konstantenPool);
+	}
+	
+	@Override
+	public void update(DatenContainer datenContainer) {
+		
 	}
 
 }
