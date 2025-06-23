@@ -9,15 +9,20 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import controller.DatenLeser;
+
 public class MenuFactory extends JMenuBar implements ActionListener {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public MenuFactory(HashMap<String, ArrayList<String>> aufbau){
+	private DatenLeser hauptController;
+	
+	public MenuFactory(HashMap<String, ArrayList<String>> aufbau, DatenLeser hc){
 		
 		super();
+		this.hauptController = hc;
 		for (String i: aufbau.keySet()){
 		    
 		    JMenu reiter = baueReiter(i, aufbau.get(i));
@@ -51,9 +56,21 @@ public class MenuFactory extends JMenuBar implements ActionListener {
 		return subPunktItem;
 
 	    }
+	    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if (e != null){
+		    String cmd = e.getActionCommand();
+		    
+		    if (cmd.equals("Beenden")) {
+		    	System.exit(0);
+		    }
+		    else if (cmd.equals("Öffnen")) {
+		    	hauptController.oeffneFile();
+		    }
+
+		}
 
 	}
 

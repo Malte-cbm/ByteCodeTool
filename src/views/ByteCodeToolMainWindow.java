@@ -1,9 +1,16 @@
 package views;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
+
+import controller.DatenLeser;
+import model.DatenContainer;
+
 import javax.swing.JScrollPane;
 
 public class ByteCodeToolMainWindow extends JFrame {
@@ -12,17 +19,24 @@ public class ByteCodeToolMainWindow extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public JTabbedPane klassenTabs;
+	private DatenLeser hauptController;
+	
 	public ByteCodeToolMainWindow() {
 		
-		Sprachen language = new Sprachen();
-		JMenuBar jmb = new JMenuBar();
-		JMenu jm = new JMenu(language.MENUBAR_ITEM_EDIT);
-		jmb.add(jm);
+		HashMap<String, ArrayList<String>> aufbau = new HashMap<>();
+		ArrayList<String> dateiPunkte = new ArrayList<>();
+		dateiPunkte.add("Öffnen");
+		dateiPunkte.add("Beenden");
+		aufbau.put("Datei", dateiPunkte);
+
+		this.klassenTabs = new JTabbedPane(JTabbedPane.TOP);
 		
-		jmb.add(new JMenu(language.MENUBAR_ITEM_FILE));
-		jmb.add(new JMenu(language.MENUBAR_ITEM_SOURCE));
+		this.hauptController = new DatenLeser(klassenTabs);
 		
-		this.setJMenuBar(jmb);
+		MenuFactory mfBar = new MenuFactory(aufbau, this.hauptController);
+		
+		this.setJMenuBar(mfBar);
 		
 		JScrollPane contentPane = new JScrollPane();
 		setContentPane(contentPane);
@@ -31,19 +45,21 @@ public class ByteCodeToolMainWindow extends JFrame {
 		setSize(1060, 900);
 		setTitle("SuperDuperHaxx0rWerkzeug");
 		
-		JTabbedPane klassenTabs = new JTabbedPane(JTabbedPane.TOP);
-		
-		AnalyseTabs klasse1_tab_1 = new AnalyseTabs("Banane");
+		DatenContainer jaja = new DatenContainer();
+
+		AnalyseTabs klasse1_tab_1 = new AnalyseTabs("Banane", jaja);
 		
 		klassenTabs.addTab(klasse1_tab_1.getTitle(), null, klasse1_tab_1, null);
 		
+		jaja.notifySubscribers();
 		contentPane.setViewportView(klassenTabs);
 		
 		
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ByteCodeToolMainWindow mainframe = new ByteCodeToolMainWindow();
+		
+		
 		
 		mainframe.setVisible(true);
 	}

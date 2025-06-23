@@ -20,7 +20,12 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JList<String> konstanten = new JList<String>();
+	
+	private JTextField sucheField;
+	private JComboBox<String> comboBoxFilter;
+	private JScrollPane konstantenPool;	
 	
 	public KonstantenTab() {
 		
@@ -33,7 +38,7 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 		steuerElementeSuche.setLayout(new GridLayout(0, 1));
 		JLabel sucheLabel = new JLabel("Suche: ");
 		steuerElementeSuche.add(sucheLabel);
-		JTextField sucheField = new JTextField(10);
+		this.sucheField = new JTextField(10);
 		steuerElementeSuche.add(sucheField);
 		
 		steuerElemente.add(steuerElementeSuche);
@@ -45,14 +50,14 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 		
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 		
-		JComboBox<String> comboBoxFilter = new JComboBox<String>(model);
+		this.comboBoxFilter = new JComboBox<String>(model);
 		steuerElementeFilter.add(comboBoxFilter);
 
 		steuerElemente.add(steuerElementeFilter);		
 		
 		add(steuerElemente);
 		
-		JScrollPane konstantenPool = new JScrollPane(konstanten);
+		this.konstantenPool = new JScrollPane(konstanten);
 		add(konstantenPool);
 	}
 	

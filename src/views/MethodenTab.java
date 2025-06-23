@@ -19,12 +19,18 @@ public class MethodenTab extends JPanel implements ObserverFace{
 	private static final long serialVersionUID = 1L;
 	
 	private JList<String> methoden = new JList<String>();
+	private JScrollPane methodenListe;
+	private JTextField methodenField;
+	private JTextField deskriptorMethodenField;
+	private JTextField accFlagsMethodenField;
+	private JScrollPane methodenAttributListe;
+	private JScrollPane byteCodeListeMethoden;
 	
 	public MethodenTab() {
 		
 		setLayout(new GridLayout(0, 1));
 		
-		JScrollPane methodenListe= new JScrollPane(methoden);
+		this.methodenListe = new JScrollPane(methoden);
 		add(methodenListe);
 
 		JPanel methodenDetails = new JPanel();
@@ -35,17 +41,17 @@ public class MethodenTab extends JPanel implements ObserverFace{
 		
 		JLabel nameMethodenLabel = new JLabel("Name:");
 		methodenDaten.add(nameMethodenLabel);
-		JTextField methodenField = new JTextField(10);
+		this.methodenField = new JTextField(10);
 		methodenDaten.add(methodenField);
 		
 		JLabel deskriptorMethodenLabel = new JLabel("Deskriptor");
 		methodenDaten.add(deskriptorMethodenLabel);
-		JTextField deskriptorMethodenField = new JTextField(10);
+		this.deskriptorMethodenField = new JTextField(10);
 		methodenDaten.add(deskriptorMethodenField);
 		
 		JLabel accFlagsMethodenLabel = new JLabel("Access Flags:");
 		methodenDaten.add(accFlagsMethodenLabel);
-		JTextField accFlagsMethodenField = new JTextField(10);
+		this.accFlagsMethodenField = new JTextField(10);
 		methodenDaten.add(accFlagsMethodenField);
 		
 		methodenDetails.add(methodenDaten);
@@ -55,14 +61,14 @@ public class MethodenTab extends JPanel implements ObserverFace{
 
 		JLabel attributMethodenLabel = new JLabel("Attribute:");
 		methodenAttribute.add(attributMethodenLabel);
-		JScrollPane methodenAttributListe = new JScrollPane();
+		this.methodenAttributListe = new JScrollPane();
 		methodenAttribute.add(methodenAttributListe);
 		
 		methodenDetails.add(methodenAttribute);
 		
 		add(methodenDetails);
 		
-		JScrollPane byteCodeListeMethoden = new JScrollPane();
+		this.byteCodeListeMethoden = new JScrollPane();
 		add(byteCodeListeMethoden);
 	}
 	
