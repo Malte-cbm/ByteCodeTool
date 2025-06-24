@@ -27,18 +27,44 @@ public class DatenLeser {
 	public void leseKlasse(File klassenDatei, DatenContainer modell) throws FileNotFoundException {
 		
 		RandomAccessFile ra = new RandomAccessFile(klassenDatei, "r");
-		System.out.println("steht hier gleich cafebabe?");
+		
+		modell.setMagic(leseMagicNo(ra));
+		modell.notifySubscribers();
+		
+	}
+	
+	public int leseMinorVersion(RandomAccessFile ra) {
+		
 		try {
-			byte[] vierBytesOfMagic = new byte[4];
-			ra.read(vierBytesOfMagic);
-			for (byte cell: vierBytesOfMagic)
-				{System.out.println(String.format("%02X", cell));}
+			byte[] zweiBytesMinorVersion = new byte[2];
+			ra.read(zweiBytesMinorVersion);
+			for (byte cell: zweiBytesMinorVersion)
+				{;}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("COVFEFE");
+		
+		return  4;
+	}
+	
+	public String leseMagicNo(RandomAccessFile ra) {
+		StringBuilder sb = new StringBuilder();
+		
+		try {
+			byte[] vierBytesOfMagic = new byte[4];
+			ra.read(vierBytesOfMagic);
+			for (byte cell: vierBytesOfMagic)
+				{sb.append(String.format("%02X", cell));}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sb.toString();
+		
 	}
 	
 	public void oeffneFile() {

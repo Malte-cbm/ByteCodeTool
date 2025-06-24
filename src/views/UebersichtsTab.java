@@ -131,6 +131,8 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 	@Override
 	public void update(DatenContainer datenContainer) {
 		
+		magicField.setText(datenContainer.getMagic());
+		
 	}
 
 }

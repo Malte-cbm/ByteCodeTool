@@ -9,7 +9,7 @@ public class DatenContainer {
 	
 	private LinkedList<ObserverFace> subscribers;
 	
-	private int magic;
+	private String magic;
 	private int minor_version;
 	private int major_version;
 	
@@ -59,7 +59,7 @@ public class DatenContainer {
 
 
 	//getter & setter
-	public int getMagic() {
+	public String getMagic() {
 		return magic;
 	}
 
@@ -67,7 +67,7 @@ public class DatenContainer {
 
 
 
-	public void setMagic(int magic) {
+	public void setMagic(String magic) {
 		this.magic = magic;
 	}
 
