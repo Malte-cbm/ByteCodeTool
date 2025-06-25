@@ -76,9 +76,7 @@ public class FelderTab extends JPanel implements ObserverFace{
 	@Override
 	public void update(DatenContainer datenContainer) {
 		
-		//this.felder = ;
 		
-		feldField.setText("asdkjh");
 		
 	}
 

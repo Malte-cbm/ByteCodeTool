@@ -132,6 +132,9 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 	public void update(DatenContainer datenContainer) {
 		
 		magicField.setText(datenContainer.getMagic());
+		minorField.setText(String.valueOf(datenContainer.getMinor_version()));
+		majorField.setText(String.valueOf(datenContainer.getMajor_version()));
+		konstantenSummeField.setText(String.valueOf(datenContainer.getConstant_pool_count()));
 		
 	}
 

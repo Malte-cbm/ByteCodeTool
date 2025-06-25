@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import controller.ObserverFace;
+import model.ConstantModelType;
 import model.DatenContainer;
 
 public class KonstantenTab extends JPanel implements ObserverFace{
@@ -21,7 +22,7 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JList<String> konstanten = new JList<String>();
+	private JList<ConstantModelType> konstanten = new JList<ConstantModelType>();
 	
 	private JTextField sucheField;
 	private JComboBox<String> comboBoxFilter;
@@ -63,7 +64,7 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 	
 	@Override
 	public void update(DatenContainer datenContainer) {
-		
+		this.konstanten = JList<ConstantModelType>(datenContainer.getConstant_pool());
 	}
 
 }

@@ -14,7 +14,7 @@ public class DatenContainer {
 	private int major_version;
 	
 	private int constant_pool_count;
-	private ArrayList<String> constant_pool;
+	private ArrayList<ConstantModelType> constant_pool;
 	
 	private String access_flags;
 	private String this_class;
@@ -123,7 +123,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<String> getConstant_pool() {
+	public ArrayList<ConstantModelType> getConstant_pool() {
 		return constant_pool;
 	}
 
@@ -131,7 +131,7 @@ public class DatenContainer {
 
 
 
-	public void setConstant_pool(ArrayList<String> constant_pool) {
+	public void setConstant_pool(ArrayList<ConstantModelType> constant_pool) {
 		this.constant_pool = constant_pool;
 	}
 

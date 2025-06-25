@@ -51,7 +51,7 @@ public class ByteCodeToolMainWindow extends JFrame {
 		
 		klassenTabs.addTab(klasse1_tab_1.getTitle(), null, klasse1_tab_1, null);
 		
-		jaja.notifySubscribers();
+		
 		contentPane.setViewportView(klassenTabs);
 		
 		

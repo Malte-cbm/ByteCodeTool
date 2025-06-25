@@ -10,7 +10,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.ConstantModelType;
+import model.ConstantUtf8;
 import model.DatenContainer;
+import model.KonstantenModell;
 import views.AnalyseTabs;
 
 public class DatenLeser {
@@ -29,24 +32,93 @@ public class DatenLeser {
 		RandomAccessFile ra = new RandomAccessFile(klassenDatei, "r");
 		
 		modell.setMagic(leseMagicNo(ra));
+		modell.setMinor_version(leseMinorVersion(ra));
+		modell.setMajor_version(leseMajorVersion(ra));
+		modell.setConstant_pool_count(leseConstant_Pool_Count(ra));
+		modell.setConstant_pool(leseConstant_Pool_Array(ra, modell.getConstant_pool_count()));
 		modell.notifySubscribers();
+
 		
 	}
-	
-	public int leseMinorVersion(RandomAccessFile ra) {
+	public ArrayList<ConstantModelType> leseConstant_Pool_Array(RandomAccessFile ra, int constNo) {
+		
+		ArrayList<ConstantModelType> fertigeListe = new ArrayList<>();
 		
 		try {
-			byte[] zweiBytesMinorVersion = new byte[2];
-			ra.read(zweiBytesMinorVersion);
-			for (byte cell: zweiBytesMinorVersion)
-				{;}
+			
+				
+			for(int i = 0; i < constNo-1; i++) {
+				
+				byte[] einByteConstTag= new byte[1];
+			
+				ra.read(einByteConstTag);
+				
+				ConstantModelType cmt = KonstantenModell.tagTabelle.get(einByteConstTag[0]<<0);
+				
+				cmt.leseDaten(ra);
+				fertigeListe.add(cmt);
+				
+				}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (ConstantModelType mod: fertigeListe) {
+			System.out.println(mod.getName());
+		}
+		
+		return fertigeListe;
+	}
+	public int leseConstant_Pool_Count(RandomAccessFile ra) {
+		int wert = 0;
+		try {
+			byte[] zweiBytesConstPool = new byte[2];
+			ra.read(zweiBytesConstPool);
+			wert = (zweiBytesConstPool[0] << 8) + (zweiBytesConstPool[1] << 0);
+			
+				
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return  4;
+		return wert;
+	}
+	
+	public int leseMajorVersion(RandomAccessFile ra) {
+		int wert = 0;
+		try {
+			byte[] zweiBytesMajorVersion = new byte[2];
+			ra.read(zweiBytesMajorVersion);
+			wert = (zweiBytesMajorVersion[0] << 8) + (zweiBytesMajorVersion[1] << 0);
+			
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return wert;
+	}
+	
+	public int leseMinorVersion(RandomAccessFile ra) {
+		int wert = 0;
+		try {
+			byte[] zweiBytesMinorVersion = new byte[2];
+			ra.read(zweiBytesMinorVersion);
+			wert = (zweiBytesMinorVersion[0] << 8) + (zweiBytesMinorVersion[1] << 0);
+			
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return wert;
 	}
 	
 	public String leseMagicNo(RandomAccessFile ra) {
