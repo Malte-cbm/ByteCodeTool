@@ -16,7 +16,9 @@ public class ConstantMethodHandle extends ConstantModelType {
 		return reference_index;
 	}
 
-	
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Reference Kind: " + this.reference_kind + " Index: " + this.reference_index;
+	}
 
 	public ConstantMethodHandle(int tag, int length, String name) {
 		super(tag, length, name);

@@ -17,6 +17,9 @@ public class ConstantInterfaceMethodRef extends ConstantModelType {
 		return name_and_type_index;
 	}
 
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Class Index: " + this.class_index + " Name and Type Index: " + this.name_and_type_index;
+	}
 
 
 	public ConstantInterfaceMethodRef(int tag, int length, String name) {

@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,7 +24,7 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 	private static final long serialVersionUID = 1L;
 	
 	private JList<ConstantModelType> konstanten = new JList<ConstantModelType>();
-	
+	private DefaultListModel<ConstantModelType> listModel;
 	private JTextField sucheField;
 	private JComboBox<String> comboBoxFilter;
 	private JScrollPane konstantenPool;	
@@ -49,22 +50,25 @@ public class KonstantenTab extends JPanel implements ObserverFace{
 		JLabel filterLabel = new JLabel("Object Filter: ");
 		steuerElementeFilter.add(filterLabel);
 		
-		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+		DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
 		
-		this.comboBoxFilter = new JComboBox<String>(model);
+		this.comboBoxFilter = new JComboBox<String>(comboBoxModel);
 		steuerElementeFilter.add(comboBoxFilter);
 
 		steuerElemente.add(steuerElementeFilter);		
 		
 		add(steuerElemente);
-		
+		this.listModel = new DefaultListModel<>();
+		this.konstanten.setModel(listModel);
 		this.konstantenPool = new JScrollPane(konstanten);
 		add(konstantenPool);
 	}
 	
 	@Override
 	public void update(DatenContainer datenContainer) {
-		this.konstanten = JList<ConstantModelType>(datenContainer.getConstant_pool());
+		for (ConstantModelType konstante: datenContainer.getConstant_pool()) {
+			this.listModel.add(konstante.getTableIndex(), konstante);
+		}
 	}
 
 }

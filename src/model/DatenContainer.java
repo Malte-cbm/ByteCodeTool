@@ -16,9 +16,9 @@ public class DatenContainer {
 	private int constant_pool_count;
 	private ArrayList<ConstantModelType> constant_pool;
 	
-	private String access_flags;
-	private String this_class;
-	private String super_class;
+	private int access_flags;
+	private int this_class;
+	private int super_class;
 	
 	private int interfaces_count;
 	private ArrayList<String> interfaces;
@@ -139,7 +139,7 @@ public class DatenContainer {
 
 
 
-	public String getAccess_flags() {
+	public int getAccess_flags() {
 		return access_flags;
 	}
 
@@ -147,7 +147,7 @@ public class DatenContainer {
 
 
 
-	public void setAccess_flags(String access_flags) {
+	public void setAccess_flags(int access_flags) {
 		this.access_flags = access_flags;
 	}
 
@@ -155,7 +155,7 @@ public class DatenContainer {
 
 
 
-	public String getThis_class() {
+	public int getThis_class() {
 		return this_class;
 	}
 
@@ -163,7 +163,7 @@ public class DatenContainer {
 
 
 
-	public void setThis_class(String this_class) {
+	public void setThis_class(int this_class) {
 		this.this_class = this_class;
 	}
 
@@ -171,7 +171,7 @@ public class DatenContainer {
 
 
 
-	public String getSuper_class() {
+	public int getSuper_class() {
 		return super_class;
 	}
 
@@ -179,7 +179,7 @@ public class DatenContainer {
 
 
 
-	public void setSuper_class(String super_class) {
+	public void setSuper_class(int super_class) {
 		this.super_class = super_class;
 	}
 

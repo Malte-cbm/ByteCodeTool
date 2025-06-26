@@ -36,8 +36,68 @@ public class DatenLeser {
 		modell.setMajor_version(leseMajorVersion(ra));
 		modell.setConstant_pool_count(leseConstant_Pool_Count(ra));
 		modell.setConstant_pool(leseConstant_Pool_Array(ra, modell.getConstant_pool_count()));
+		modell.setAccess_flags(leseAccFlags(ra));
+		modell.setThis_class(leseThisClass(ra));
+		modell.setSuper_class(leseSuperClass(ra));
 		modell.notifySubscribers();
 
+		
+	}
+	
+	public int leseSuperClass (RandomAccessFile ra) {
+		
+		int wert = 0;
+		try {
+			byte[] zweiBytesSuperClass = new byte[2];
+			ra.read(zweiBytesSuperClass);
+			wert = (zweiBytesSuperClass[0] << 8) + (zweiBytesSuperClass[1] << 0);
+			
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return wert;
+		
+	}
+	
+	public int leseThisClass (RandomAccessFile ra) {
+		
+		int wert = 0;
+		try {
+			byte[] zweiBytesThisClass = new byte[2];
+			ra.read(zweiBytesThisClass);
+			wert = (zweiBytesThisClass[0] << 8) + (zweiBytesThisClass[1] << 0);
+			
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return wert;
+		
+	}
+	
+	public int leseAccFlags (RandomAccessFile ra) {
+		
+		int wert = 0;
+		try {
+			byte[] zweiBytesAccFlags = new byte[2];
+			ra.read(zweiBytesAccFlags);
+			wert = (zweiBytesAccFlags[0] << 8) + (zweiBytesAccFlags[1] << 0);
+			
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return wert;
 		
 	}
 	public ArrayList<ConstantModelType> leseConstant_Pool_Array(RandomAccessFile ra, int constNo) {
@@ -53,8 +113,9 @@ public class DatenLeser {
 			
 				ra.read(einByteConstTag);
 				
-				ConstantModelType cmt = KonstantenModell.tagTabelle.get(einByteConstTag[0]<<0);
+				ConstantModelType cmt = KonstantenModell.constTypeFromTag(einByteConstTag[0]<<0);
 				
+				cmt.setTableIndex(i);
 				cmt.leseDaten(ra);
 				fertigeListe.add(cmt);
 				
@@ -65,7 +126,7 @@ public class DatenLeser {
 		}
 		
 		for (ConstantModelType mod: fertigeListe) {
-			System.out.println(mod.getName());
+			System.out.println("index " + mod.getTableIndex()+1 + " " + mod.getName());
 		}
 		
 		return fertigeListe;

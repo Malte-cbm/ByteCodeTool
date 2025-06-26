@@ -21,6 +21,10 @@ public class ConstantUtf8 extends ConstantModelType {
 		
 	}
 	
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Length: " + this.laenge + " : " + this.inhalt;
+	}
+	
 	public void leseDaten(RandomAccessFile ra) {
 		
 		byte[] zweiByteUtf8Laenge = new byte[2];

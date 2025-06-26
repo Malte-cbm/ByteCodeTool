@@ -135,6 +135,8 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 		minorField.setText(String.valueOf(datenContainer.getMinor_version()));
 		majorField.setText(String.valueOf(datenContainer.getMajor_version()));
 		konstantenSummeField.setText(String.valueOf(datenContainer.getConstant_pool_count()));
+		flagsField.setText(String.valueOf(datenContainer.getAccess_flags()));
+		thisClassField.setText(datenContainer.getConstant_pool().get(datenContainer.getThis_class()).getName());
 		
 	}
 

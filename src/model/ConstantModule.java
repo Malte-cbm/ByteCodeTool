@@ -18,6 +18,10 @@ public class ConstantModule extends ConstantModelType {
 		super(tag, length, name);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Name Index: " + this.name_index;
+	}
 
 	@Override
 	public void leseDaten(RandomAccessFile ra) {

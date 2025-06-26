@@ -21,6 +21,10 @@ public class ConstantLong extends ConstantModelType {
 		super(tag, length, name);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Value: " + this.wert;
+	}
 
 	@Override
 	public void leseDaten(RandomAccessFile ra) {

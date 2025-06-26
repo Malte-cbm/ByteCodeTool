@@ -19,6 +19,10 @@ public class ConstantInteger extends ConstantModelType {
 		super(tag, length, name);
 	}
 	
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Value: " + this.wert;
+	}
+	
 	public void leseDaten(RandomAccessFile ra) {
 		
 		byte[] vierByteInteger = new byte[4];

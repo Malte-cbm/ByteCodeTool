@@ -16,6 +16,10 @@ public class ConstantInvokeDynamic extends ConstantModelType {
 	public int getName_and_type_index() {
 		return name_and_type_index;
 	}
+	
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Bootstrap Method Attribute: " + this.bootstrap_method_attr_index + " Name and Type Index: " + this.name_and_type_index;
+	}
 
 	
 	public ConstantInvokeDynamic(int tag, int length, String name) {

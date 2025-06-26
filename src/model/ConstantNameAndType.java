@@ -16,6 +16,9 @@ public class ConstantNameAndType extends ConstantModelType {
 		return deskriptor_index;
 	}
 
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Name Index: " +this.name_index + " Deskriptor Index: " + this.deskriptor_index;
+	}
 	
 	
 

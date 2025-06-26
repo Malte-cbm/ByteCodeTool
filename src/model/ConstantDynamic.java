@@ -23,6 +23,10 @@ public class ConstantDynamic extends ConstantModelType {
 		// TODO Auto-generated constructor stub
 	}
 
+	public String toString() {
+		return this.getTableIndex()+1 + "  :  " + this.getName() + " Bootstrap Method Attribute: " + this.bootstrap_method_attr_index + " Name and Type Index: " + this.name_and_type_index;
+	}
+	
 	@Override
 	public void leseDaten(RandomAccessFile ra) {
 		byte[] zweiByteBootstrapIndex= new byte[2];
