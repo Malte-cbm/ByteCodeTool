@@ -1,11 +1,19 @@
 package views;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.GridLayout;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextField;
 
 import controller.ObserverFace;
+import model.ConstantClass;
+import model.ConstantModelType;
+import model.ConstantUtf8;
 import model.DatenContainer;
 
 public class UebersichtsTab extends JPanel implements ObserverFace{
@@ -24,8 +32,15 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 	private JTextField flagsField;
 	private JTextField thisClassField;
 	private JTextField superClassField;
-	private JTextField interfacesField;
-	private JTextField attributField;
+	private JScrollPane interfacesField;
+	private JList<ConstantModelType> interfaces = new JList<ConstantModelType>();
+	private JScrollPane attributField;
+	private JList<ConstantModelType> attributes = new JList<ConstantModelType>();
+	
+	private DefaultListModel<ConstantModelType> listModelInterfaces;
+	private DefaultListModel<ConstantModelType> listModelAttributes;
+
+	
 	
 
 	
@@ -112,7 +127,10 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 		interfaceDaten.setLayout(new GridLayout(0, 1));
 		JLabel interfacesLabel = new JLabel("Implements:");
 		interfaceDaten.add(interfacesLabel);
-		this.interfacesField = new JTextField(10);
+		this.listModelInterfaces = new DefaultListModel<>();
+		this.interfaces.setModel(listModelInterfaces);
+		this.interfacesField = new JScrollPane(interfaces);
+
 		interfaceDaten.add(interfacesField);
 		
 		add(interfaceDaten);
@@ -121,7 +139,10 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 		attributDaten.setLayout(new GridLayout(0, 1));
 		JLabel attributLabel = new JLabel("Attributes:");
 		attributDaten.add(attributLabel);
-		this.attributField = new JTextField(10);
+		
+		this.listModelAttributes = new DefaultListModel<>();
+		this.attributes.setModel(listModelAttributes);
+		this.attributField = new JScrollPane(attributes);
 		attributDaten.add(attributField);
 		
 		add(attributDaten);
@@ -136,8 +157,35 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 		majorField.setText(String.valueOf(datenContainer.getMajor_version()));
 		konstantenSummeField.setText(String.valueOf(datenContainer.getConstant_pool_count()));
 		flagsField.setText(String.valueOf(datenContainer.getAccess_flags()));
-		thisClassField.setText(datenContainer.getConstant_pool().get(datenContainer.getThis_class()).getName());
 		
+		int thisClassIndexImConstArray = datenContainer.getThis_class()-1;
+		if( datenContainer.getConstant_pool().get(thisClassIndexImConstArray) instanceof ConstantClass obj) {
+			if (datenContainer.getConstant_pool().get(obj.getIndex()-1) instanceof ConstantUtf8 ubj) {
+				thisClassField.setText(ubj.getInhalt());
+			}
+		}
+		
+		int superClassIndexImConstArray = datenContainer.getSuper_class()-1;
+		if (superClassIndexImConstArray == 0) {
+			superClassField.setText("Object");
+		}
+		else if( datenContainer.getConstant_pool().get(superClassIndexImConstArray) instanceof ConstantClass obj) {
+			
+			if (datenContainer.getConstant_pool().get(obj.getIndex()-1) instanceof ConstantUtf8 ubj) {
+				superClassField.setText(ubj.getInhalt());
+			}
+		}
+		
+		for (int i: datenContainer.getInterfaces()) {
+			this.listModelInterfaces.addElement(datenContainer.getConstant_pool().get(i));}
+		
+		/*for (int i: datenContainer.getAttributes()) {
+			this.listModelAttributes.addElement(datenContainer.getConstant_pool().get(i));}
+		*/
+		interfacesSummeField.setText(String.valueOf(datenContainer.getInterfaces_count()));
+		felderSummeField.setText(String.valueOf(datenContainer.getFields_count()));
+		methodenSummeField.setText(String.valueOf(datenContainer.getMethods_count()));
+		attributeSummeField.setText(String.valueOf(datenContainer.getAttributes_count()));
 	}
 
 }

@@ -21,16 +21,16 @@ public class DatenContainer {
 	private int super_class;
 	
 	private int interfaces_count;
-	private ArrayList<String> interfaces;
+	private ArrayList<Integer> interfaces;
 	
 	private int fields_count;
-	private ArrayList<String> fields;
+	private ArrayList<Integer> fields;
 	
 	private int methods_count;
-	private ArrayList<String> methods;
+	private ArrayList<Integer> methods;
 	
 	private int attributes_count;
-	private ArrayList<String> attributes;
+	private ArrayList<Integer> attributes;
 	
 	
 	public DatenContainer() {
@@ -203,7 +203,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<String> getInterfaces() {
+	public ArrayList<Integer> getInterfaces() {
 		return interfaces;
 	}
 
@@ -211,7 +211,7 @@ public class DatenContainer {
 
 
 
-	public void setInterfaces(ArrayList<String> interfaces) {
+	public void setInterfaces(ArrayList<Integer> interfaces) {
 		this.interfaces = interfaces;
 	}
 
@@ -235,7 +235,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<String> getFields() {
+	public ArrayList<Integer> getFields() {
 		return fields;
 	}
 
@@ -243,7 +243,7 @@ public class DatenContainer {
 
 
 
-	public void setFields(ArrayList<String> fields) {
+	public void setFields(ArrayList<Integer> fields) {
 		this.fields = fields;
 	}
 
@@ -267,7 +267,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<String> getMethods() {
+	public ArrayList<Integer> getMethods() {
 		return methods;
 	}
 
@@ -275,7 +275,7 @@ public class DatenContainer {
 
 
 
-	public void setMethods(ArrayList<String> methods) {
+	public void setMethods(ArrayList<Integer> methods) {
 		this.methods = methods;
 	}
 
@@ -299,7 +299,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<String> getAttributes() {
+	public ArrayList<Integer> getAttributes() {
 		return attributes;
 	}
 
@@ -307,7 +307,7 @@ public class DatenContainer {
 
 
 
-	public void setAttributes(ArrayList<String> attributes) {
+	public void setAttributes(ArrayList<Integer> attributes) {
 		this.attributes = attributes;
 	}
 
