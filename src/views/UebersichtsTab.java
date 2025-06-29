@@ -159,11 +159,13 @@ public class UebersichtsTab extends JPanel implements ObserverFace{
 		flagsField.setText(String.valueOf(datenContainer.getAccess_flags()));
 		
 		int thisClassIndexImConstArray = datenContainer.getThis_class()-1;
-		if( datenContainer.getConstant_pool().get(thisClassIndexImConstArray) instanceof ConstantClass obj) {
-			if (datenContainer.getConstant_pool().get(obj.getIndex()-1) instanceof ConstantUtf8 ubj) {
-				thisClassField.setText(ubj.getInhalt());
+		
+			if( datenContainer.getConstant_pool().get(thisClassIndexImConstArray) instanceof ConstantClass obj) {
+				if (datenContainer.getConstant_pool().get(obj.getIndex()-1) instanceof ConstantUtf8 ubj) {
+					thisClassField.setText(ubj.getInhalt());
+				}
 			}
-		}
+		
 		
 		int superClassIndexImConstArray = datenContainer.getSuper_class()-1;
 		if (superClassIndexImConstArray == 0) {

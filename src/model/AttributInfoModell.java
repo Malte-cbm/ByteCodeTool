@@ -24,5 +24,7 @@ public class AttributInfoModell {
 	public void setAttributeLength(int attributeLength) {
 		this.attributeLength = attributeLength;
 	}
-	
+	public String toString() {
+		return this.attributeNameString;
+	}
 }
