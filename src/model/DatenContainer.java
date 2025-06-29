@@ -24,13 +24,13 @@ public class DatenContainer {
 	private ArrayList<Integer> interfaces;
 	
 	private int fields_count;
-	private ArrayList<Integer> fields;
+	private ArrayList<FieldInfoModell> fields;
 	
 	private int methods_count;
-	private ArrayList<Integer> methods;
+	private ArrayList<MethodInfoModell> methods;
 	
 	private int attributes_count;
-	private ArrayList<Integer> attributes;
+	private ArrayList<AttributInfoModell> attributes;
 	
 	
 	public DatenContainer() {
@@ -235,7 +235,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<Integer> getFields() {
+	public ArrayList<FieldInfoModell> getFields() {
 		return fields;
 	}
 
@@ -243,7 +243,7 @@ public class DatenContainer {
 
 
 
-	public void setFields(ArrayList<Integer> fields) {
+	public void setFields(ArrayList<FieldInfoModell> fields) {
 		this.fields = fields;
 	}
 
@@ -267,7 +267,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<Integer> getMethods() {
+	public ArrayList<MethodInfoModell> getMethods() {
 		return methods;
 	}
 
@@ -275,7 +275,7 @@ public class DatenContainer {
 
 
 
-	public void setMethods(ArrayList<Integer> methods) {
+	public void setMethods(ArrayList<MethodInfoModell> methods) {
 		this.methods = methods;
 	}
 
@@ -299,7 +299,7 @@ public class DatenContainer {
 
 
 
-	public ArrayList<Integer> getAttributes() {
+	public ArrayList<AttributInfoModell> getAttributes() {
 		return attributes;
 	}
 
@@ -307,7 +307,7 @@ public class DatenContainer {
 
 
 
-	public void setAttributes(ArrayList<Integer> attributes) {
+	public void setAttributes(ArrayList<AttributInfoModell> attributes) {
 		this.attributes = attributes;
 	}
 
